@@ -6,7 +6,7 @@ A community VR mod for Teardown, built on Nahu's original work and continued wit
 
 Choose **Teardown.VR.zip** to install and play, or **Teardown.VR.Source.zip** for the original source archive. The source is also available to browse in this repository. See [BUILDING.md](BUILDING.md) for build instructions. Both downloads are free.
 
-[The story](#the-story-behind-the-mod) · [Headset testing](#headset-and-controller-testing) · [Installation](#installation) · [Performance](#performance-settings) · [How to play](#how-to-play) · [Uninstall](#uninstall) · [Feedback](#feedback-and-community) · [Credits](#credits)
+[The story](#the-story-behind-the-mod) · [Headset testing](#headset-and-controller-testing) · [Installation](#installation) · [Performance](#performance-settings) · [How to play](#how-to-play) · [Controls](#controls) · [Uninstall](#uninstall) · [Feedback](#feedback-and-community) · [Credits](#credits)
 
 ## The story behind the mod
 
@@ -92,9 +92,160 @@ Before you start playing:
 
 The launcher can start Teardown first, then start SteamVR when the map is ready. If Teardown is already running, it uses that session. You can still load a map yourself first and then run `Enable-VR.cmd`.
 
-On the tested Quest 3S controls, tap **B** for VR settings, double-tap **B** for pause, or hold **B** for the map. Run **`Disable-VR.cmd`** to turn VR off for the current session.
+See the [full controls guide](#controls) below for movement, tools, grabbing, menus, vehicles, the tablet, holsters, and the hYve gun pack. Run **`Disable-VR.cmd`** to turn VR off for the current session.
 
 There may be a brief pause while VR starts. Freezing and performance issues are not guaranteed to be resolved on every setup; please report problems with your headset, controllers, game version, and performance setting.
+
+## Controls
+
+**Current build: r7.34**
+
+These controls are for **Quest controllers through Virtual Desktop and SteamVR**. Testing has been limited to the Quest 3S headset.
+
+Older compatibility builds may have different controls.
+
+### Movement and tools
+
+- Left stick forward/backward: Walk forward or backward.
+- Left stick left/right: Strafe left or right.
+- Hold left stick clicked in: Sprint using the game’s Shift action.
+- Right stick left/right: Smooth turn.
+- Right stick up/down: Scroll through weapons and tools. Hold it to continue scrolling.
+- Hold right stick clicked in: Crouch.
+- A: Jump.
+- Right trigger: Fire or use the equipped tool’s primary action.
+- Left trigger: Use the equipped tool’s secondary/right-click action, where supported.
+- Tap X with no interaction prompt: Reload weapons that use R. Reload happens when X is released.
+- X at an ordinary interaction prompt: Interact immediately, including opening the campaign computer.
+- Y: Toggle the game flashlight.
+- Move your right controller: Aim the equipped weapon or tool.
+
+### Grabbing, throwing, and physical interactions
+
+The following controls use “Grab mode: separate hands.”
+
+- Hold left grip: Grab an eligible object with your left hand.
+- Hold right grip: Grab an eligible object with your right hand.
+- Release a grip: Release that hand’s object.
+- Move your hand and release its grip: Throw using your hand’s movement.
+- While gripping an object, hold that hand’s trigger, then release the trigger: Charge and throw in that controller’s pointing direction. Charge increases for approximately one second.
+- Grip the same object with both hands: Hold it with both hands. Releasing one hand leaves the other attached.
+- Bring your left hand to the equipped tool and hold left grip: Support the tool with your second hand.
+- Release left grip: Release the supporting hand.
+- Push with your hands or tools: Physical contact when “Experimental physical contact” is enabled.
+- Swing a recognized melee tool: Activate its normal attack when “Physical melee” is enabled.
+- Punch with an empty hand: Perform weak physical melee when that option is enabled.
+- Select “VR hands” from the tool selection: Use your hands without an equipped weapon model.
+
+In “normal game grab” mode, either grip activates the game’s normal right-click action instead of independent hand grabbing. Behavior can differ between tools.
+
+### B button, menus, and recentering
+
+- Tap B once: Open or close VR settings. There is a short delay to distinguish a double tap.
+- Double-tap B quickly: Open or close the game pause menu.
+- Hold B for one second: Toggle the map.
+- Hold B while using the tablet: Toggle the tablet map page, except while its spawn page is active.
+- Point either controller at VR settings and press its trigger: Select the pointed setting.
+- Point the right controller at ordinary game menus and press right trigger: Click buttons, including campaign computer level selections.
+- Hold the pointer trigger while moving: Hold the mouse button for controls that support dragging.
+- Thumbstick up/down while pointing at a game menu: Scroll continuously. Ordinary menus accept either stick.
+- X inside an ordinary game menu: Back or close using the game’s Escape action.
+- X while using the campaign computer: Exit the computer.
+- Hold both thumbsticks clicked in for 1.5 seconds: Recenter head position and heading.
+- Keyboard F8: Recenter immediately.
+- VR menu → Recenter position and heading: Recenter through the menu.
+
+The mod also detects SteamVR tracking-origin resets.
+
+### Vehicles and mounted controls
+
+These mappings apply when the game recognizes you as controlling a vehicle or mounted object.
+
+- Hold X for one second at a vehicle-entry prompt: Enter. Keep pointing at the same target while holding.
+- Tap X while inside: Exit.
+- Right trigger: Accelerate or drive forward.
+- Left trigger: Reverse.
+- Left stick left/right: Steer.
+- A: Send the vehicle’s Space action—normally brake or handbrake.
+- Right stick left/right: Turn the vehicle camera.
+- Hold right stick up/down: Continuously adjust vehicle camera zoom, including moving into or out of first person where supported.
+- Right grip: Vehicle primary/left-click action.
+- Left grip: Vehicle secondary/right-click action.
+- Y: Send the game’s flashlight/F action.
+
+The exact primary, secondary, and Space actions depend on the vehicle.
+
+Physical steering-wheel grabbing is not mapped in this build. Steering uses the left stick.
+
+### Vehicle camera adjustment
+
+- Select “Adjust vehicle camera (3 seconds)”: Recalibrate seated camera height after three seconds.
+- Select “Vehicle / mounted camera: left stick” while inside: Enter manual adjustment mode.
+- Left stick up/down during adjustment: Move the camera up or down.
+- Left stick right during adjustment: Move the camera forward.
+- Left stick left during adjustment: Move the camera backward.
+- Tap B or select “Finish camera adjustment (save)”: Finish and save.
+- Select “Reset vehicle camera position”: Clear the vehicle camera offsets.
+
+### Tablet
+
+- Reach to the outside of your left thigh: Find the tablet. A vibration signals proximity.
+- Press left grip near it: Pick it up. Another vibration confirms the grab.
+- Press right grip near it while “VR hands” is selected: Pick it up with your right hand instead.
+- Point your free controller at the screen and press its trigger: Select tablet buttons.
+- Select “Map”: Display the game map on the tablet.
+- Select “Spawn menu”: Open the spawn interface on the tablet.
+- Move your free hand’s stick up/down while pointing: Scroll the displayed menu.
+- Click the search field: Bring up the tablet keyboard.
+- Point at keyboard keys and press the trigger: Type letters or numbers, or select Space, Backspace, and Enter.
+- X on a tablet page: Leave that page and return toward the tablet home screen.
+- Release the holding grip outside an active page: Drop the tablet.
+- Move away from a dropped tablet: It returns to your left thigh once sufficiently far away.
+
+### Shoulder holsters
+
+- Hold right grip, move the equipped tool behind either shoulder, then release right grip: Holster that tool.
+- Reach to the occupied shoulder and press either grip: Retrieve the holstered tool.
+- VR menu → Retrieve holstered tool: Emergency retrieval if reaching it is difficult.
+
+While a tool is holstered, the mod selects “VR hands” and locks normal tool scrolling until retrieval.
+
+### hYve gun pack
+
+- VR menu → hYve gun pack ON: Add its five weapons alongside your normal tools.
+- Right stick up/down: Select the Glock, G36K, Magnum, Shotgun, or Flamethrower.
+- Right trigger: Fire the selected weapon. Holding repeats fire at its configured rate.
+- Successfully support the Glock with left grip, then press left trigger: Toggle its flashlight.
+- Successfully support the G36K with left grip, then press left trigger: Toggle its red laser dot.
+- Release and press left trigger again while supporting: Toggle the attachment again.
+
+Merely holding left grip away from the weapon does not activate its attachment toggle.
+
+### VR settings menu options
+
+- Head follows view: Enable or disable head-directed body heading.
+- Smooth turn speed: Change on-foot turning speed.
+- Recenter position and heading: Reset your VR position and facing direction.
+- Open game pause menu: Open the game’s pause menu.
+- Point at game menus / campaign computer: Manually enable the game-menu pointer.
+- Rendering: Switch between stereoscopic rendering and single-pass compatibility without stereo depth.
+- VR HUD: Show or hide the headset HUD.
+- Grab mode: Switch between separate hands and normal game grab.
+- Experimental physical contact: Enable or disable hand/tool pushing interactions.
+- VR hands plus gun pack: Restrict the selectable inventory to hands and the gun pack.
+- Vehicle turn speed: Change vehicle camera turning speed.
+- Adjust vehicle camera (3 seconds): Recalibrate seated camera height after a three-second delay.
+- Reset vehicle camera position: Clear vehicle camera offsets.
+- God mode: Prevent native player damage.
+- Unlimited native ammo: Preserve ammo handled by the game’s ammo system. Custom mod ammo counters may differ.
+- Retrieve holstered tool: Recover a holstered tool without reaching behind you.
+- Return tablet to home: Return the tablet interface to its home page.
+- Physical melee: Enable or disable swing and punch attacks.
+- Normal VR view / Wider VR view: Change the VR view width.
+- Swing attack for this tool: Cycle AUTO → ON → OFF for the selected tool.
+- Close settings: Dismiss VR settings.
+- Vehicle / mounted camera: left stick: Enter manual vehicle camera adjustment. While adjusting, this changes to “Finish camera adjustment (save).”
+- hYve gun pack: Enable or disable the pack in the normal inventory.
 
 ## Uninstall
 
