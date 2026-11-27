@@ -8,7 +8,7 @@ A community VR mod for Teardown, built on Nahu's original work and continued wit
 
 ## The story behind the mod
 
-Hey guys! First off, sorry for the delay. I've been busy with work, a family matter came up, and then I got sick. Oh, and let's blame GTA6 for some of the delay too. 😅 Thanks for sticking with me—it's taken a while to get here.
+Hey guys! First off, sorry for the delay. I've been busy with work, a family matter came up, and then I got sick. Oh, and I got caught up playing GTA6, so yeah... that didn't help with the delay either. 😅 Thanks for sticking with me—it's taken a while to get here.
 
 Before anything else, **this project would not be possible without Nahu**, who created the original mod. I knew them for a little while before they stepped away and left it unfinished. That was disappointing, of course, but completely understandable. A mod like this is incredibly difficult to make, and I don't blame them at all for deciding not to continue.
 
@@ -65,7 +65,7 @@ The included installer handles the installation in one click.
 
 ### Workshop mod for the optional gun pack
 
-If you want to use the optional gun pack, make sure to download **hYve mYnd [TEST]** from the **Teardown Steam Workshop**. This is the Workshop mod required for the gun pack.
+If you want to use the optional gun pack, make sure to download **[hYve mYnd \[TEST\]](https://steamcommunity.com/sharedfiles/filedetails/?id=2667255756)** from the **Teardown Steam Workshop**. This is the Workshop mod required for the gun pack.
 
 ## Performance settings
 
