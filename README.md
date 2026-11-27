@@ -1,8 +1,10 @@
 # Teardown VR 2.0
 
-A community VR mod for Teardown, built on Nahu's original work and continued with AI-assisted development. I've wanted to bring this project back for years, and I plan to release it for everyone to enjoy for free.
+A community VR mod for Teardown, built on Nahu's original work and continued with AI-assisted development. I've wanted to bring this project back for years, and now it's available for everyone to enjoy for free.
 
-> **Download status:** The mod ZIP and source code will be added in a later update. The instructions below are for the mod package once it's available.
+**[Download Teardown VR 2.0 — r7.34](https://github.com/StrainZex/Teardown-VR/releases/tag/v2.0-r7.34)**
+
+Choose **Teardown.VR.zip** to install and play, or **Teardown.VR.Source.zip** for the original source archive. The source is also available to browse in this repository. See [BUILDING.md](BUILDING.md) for build instructions. Both downloads are free.
 
 [The story](#the-story-behind-the-mod) · [Headset testing](#headset-and-controller-testing) · [Installation](#installation) · [Performance](#performance-settings) · [How to play](#how-to-play) · [Uninstall](#uninstall) · [Feedback](#feedback-and-community) · [Credits](#credits)
 
@@ -38,11 +40,11 @@ I know people have different views on AI, and I share some of those concerns. Fo
 
 ### A free project for the community
 
-I plan to release this mod **completely free. It won't cost you a single dime.** I've wanted it to be something the community could enjoy together for a long time.
+This mod is **completely free. It won't cost you a single dime.** I've wanted it to be something the community could enjoy together for a long time.
 
-I also plan to share the source code alongside the mod download so people can see how it works. The source files aren't available here yet. When I add them, I'll also include the details on how they can be used or modified.
+The source code is available alongside the mod download so you can see how it works. No project-wide open-source license has been selected. Please read [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) and the included notices before reusing or redistributing any part of it.
 
-I'd love to see people build on the project once those details are in place. Please give credit to Nahu's original work and this repository when discussing or sharing the project.
+I'd love to see people build on the project where the relevant permissions allow it. Please give credit to Nahu's original work and this repository when discussing or sharing the project.
 
 It's been a long time coming. Welcome to **Teardown VR 2.0**—I hope you enjoy it!
 
@@ -54,53 +56,60 @@ If you're using a different headset or controllers, please let me know whether t
 
 ## Installation
 
-Once the mod ZIP is available:
+You'll need a Windows x64 PC, your own Steam copy of Teardown, SteamVR, a connected PC VR headset, and the Microsoft Visual C++ x64 runtime. This package is for single-player use. Headset testing is limited to the Quest 3S, as explained above.
 
-1. Download the **mod ZIP** and save it wherever you'd like, such as your desktop or a folder of your choice.
-2. Extract the ZIP file.
-3. Open the extracted folder.
-4. Run **Install Teardown VR** to install the mod.
+1. Download **Teardown.VR.zip** from the [release page](https://github.com/StrainZex/Teardown-VR/releases/tag/v2.0-r7.34) and save it wherever you'd like, such as your desktop or a folder of your choice.
+2. Extract the entire ZIP file, then open the **Teardown VR** folder. Don't run the installer from inside the ZIP.
+3. Launch and close Teardown once, then make sure it is closed before installing.
+4. Double-click **`Install-VR.cmd`**. It finds Teardown through your Steam libraries and installs the VR mod files.
+5. In Steam, open **Teardown → Properties → Launch Options** and enter **`-gfxapi OpenGL`**.
+6. If you use a custom mod list, enable **Sledge VR accessories** and **Sledge VR hYve gun pack** in that list. The installer enables them in the Default list.
 
-The included installer handles the installation in one click.
+The package checks the game executable and scripts it supports. If a later Teardown update is rejected, it may need an updated VR build; a matching game version label alone does not guarantee compatibility.
 
-### Workshop mod for the optional gun pack
+### Optional gun pack and Workshop download
 
-If you want to use the optional gun pack, make sure to download **[hYve mYnd \[TEST\]](https://steamcommunity.com/sharedfiles/filedetails/?id=2667255756)** from the **Teardown Steam Workshop**. This is the Workshop mod required for the gun pack.
+The VR package includes an adapted hYve gun pack. To use it, turn on **hYve gun pack** in the VR settings; it is off by default.
+
+You can also download the original **[hYve mYnd \[TEST\]](https://steamcommunity.com/sharedfiles/filedetails/?id=2667255756)** from the **Teardown Steam Workshop** if you'd like. Credit for the original weapon assets and behavior goes to **MythRillin / SnakeyWakey**; see the included [gun-pack credits](mods/sledge-vr-hyve/CREDITS.txt).
 
 ## Performance settings
 
 Before you start playing:
 
 1. Open the folder where you extracted the mod.
-2. Run `performance.bat`.
+2. Run `Performance.bat`.
 3. Choose a VR performance setting and try it out to see how it runs on your setup.
 
-**Close Teardown completely every time you want to change the performance setting.** Choose another option in `performance.bat`, then restart the game to try it.
+**Close Teardown completely every time you want to change the performance setting.** Choose another option in `Performance.bat`, then restart the game to try it.
 
 ## How to play
 
-The startup order matters:
+1. Connect your headset using your usual PC VR software.
+2. Open the extracted **Teardown VR** folder and double-click **`Enable-VR.cmd`**.
+3. Choose your mods and load a map in Teardown. Keep the game window selected for controller input.
+4. Wait for the launcher to detect the loaded OpenGL scene and enable VR.
 
-1. **Start Teardown first.**
-2. Select the mods you want to use and load a map.
-3. Wait until the map has fully loaded and the game is running.
-4. Open the folder where you extracted the VR mod.
-5. Start **SteamVR**.
-6. Run **Enable VR** only after the map has loaded and SteamVR is running.
+The launcher can start Teardown first, then start SteamVR when the map is ready. If Teardown is already running, it uses that session. You can still load a map yourself first and then run `Enable-VR.cmd`.
 
-The game may briefly freeze while VR activates, and the image on your monitor should change. Once the game resumes, you should be ready to play.
+On the tested Quest 3S controls, tap **B** for VR settings, double-tap **B** for pause, or hold **B** for the map. Run **`Disable-VR.cmd`** to turn VR off for the current session.
+
+There may be a brief pause while VR starts. Freezing and performance issues are not guaranteed to be resolved on every setup; please report problems with your headset, controllers, game version, and performance setting.
 
 ## Uninstall
 
-Run the included **one-click uninstall file**.
+1. Close Teardown completely.
+2. Run **`Uninstall-VR.cmd`** from the extracted folder.
 
-The uninstaller is intended to remove the VR mod and the extra files installed with it, including the weapon-pack files. If you also want to remove your Workshop subscription, manage that separately through Steam.
+The uninstaller removes the installed VR mods, reverses the known game-script patches, and removes the runtime files from the extracted package. **Extract the original ZIP again if you want to reinstall.**
+
+Modified VR files and unknown game-script versions cause the uninstaller to stop rather than overwrite them. Saves, unrelated mods, and graphics settings are preserved. Any separate Workshop subscription is managed through Steam.
 
 ## Feedback and community
 
 I'd love to see the Teardown community come up with creative VR mods for the Workshop and help this project improve.
 
-Got an idea for an update, found a weird bug, or know how to fix something that isn't working? I'd love to hear from you. You can share them through this repository's [Issues page](https://github.com/StrainZex/Teardown-VR/issues).
+Got an idea for an update, found a weird bug, or know how to fix something that isn't working? I'd love to hear from you. You can share feedback through this repository's [Issues page](https://github.com/StrainZex/Teardown-VR/issues).
 
 When reporting a problem, please include:
 
@@ -116,4 +125,11 @@ I'm not an experienced developer, so I can't promise a fix for every issue or an
 
 - **Nahu** — Creator of the original Teardown VR mod. Their work and foundation made this continuation possible.
 - **StrainZex** — Continued the project through testing, troubleshooting, and AI-assisted development.
+- **MythRillin / SnakeyWakey** — Original hYve weapon assets and behavior. See the [gun-pack credits](mods/sledge-vr-hyve/CREDITS.txt).
 - **The community** — Thank you to everyone who shares feedback, ideas, and help.
+
+## Source and build information
+
+See [BUILDING.md](BUILDING.md) for the original source documentation and build commands, [VALIDATION.md](VALIDATION.md) for the supplied validation record, and [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) for third-party notices. The validation record describes checks performed before this upload, not new tests run during publication.
+
+`SOURCE_MANIFEST.json` describes the original source ZIP. Its original `README.md` is preserved here as `BUILDING.md`; this repository uses a separate player-facing README.

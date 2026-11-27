@@ -1,0 +1,3 @@
+name = Sledge VR hYve gun pack
+author = MythRillin / SnakeyWakey; VR adaptation
+description = Standalone hYve mYnd weapons for Sledge VR. Original models and effects by MythRillin / SnakeyWakey.

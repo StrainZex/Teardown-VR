@@ -1,0 +1,13 @@
+<prefab version="1.6.0">
+  <group name="tool_space">
+    <body dynamic="false">
+      <vox tags="hyve_gun unbreakable" pos="0 0 0" rot="0 0 0" file="MOD/models/g36k.vox" scale="0.26">
+        <group pos="0.1 0.615 -1.5">
+							</group>
+        <group pos="0.2 0.6 -0.6" />
+      </vox>
+    </body>
+    <location name="tp_action_rh" tags="name=tp_action_rh ik_hand" pos="0.13 0.57 -0.40" rot="0 90 0" />
+    <location name="muzzle" tags="name=muzzle" pos="0.1 0.615 -1.5" rot="0 0 0" />
+  </group>
+</prefab>

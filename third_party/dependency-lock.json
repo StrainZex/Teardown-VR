@@ -1,0 +1,18 @@
+{
+  "detours": {
+    "repo": "microsoft/Detours",
+    "sha": "66d6f2d34aba564d373083621cacf66ec51199b2"
+  },
+  "glew-cmake": {
+    "repo": "Perlmint/glew-cmake",
+    "sha": "7c2b7514f64234756f7df051b9316f1e46f5a6e7"
+  },
+  "glm": {
+    "repo": "g-truc/glm",
+    "sha": "cc98465e3508535ba8c7f6208df934c156a018dc"
+  },
+  "openvr": {
+    "repo": "ValveSoftware/openvr",
+    "sha": "4c85abcb7f7f1f02adaf3812018c99fc593bc341"
+  }
+}

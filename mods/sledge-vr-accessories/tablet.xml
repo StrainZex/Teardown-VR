@@ -1,0 +1,5 @@
+<prefab version="1.0.0">
+ <body name="VR tablet" dynamic="false" tags="sledge_accessory unbreakable">
+  <vox name="tablet" file="MOD/tablet.vox" scale="0.075"/>
+ </body>
+</prefab>

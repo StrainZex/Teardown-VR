@@ -1,0 +1,36 @@
+[
+  {
+    "name": "player_locomotion",
+    "original_sha256": "49bcf338d0278c872878d69842e5867494e4027e4e0427659f44d15be408ae0f",
+    "patched_sha256": "1910facbae44e295ae7130726fffdcf608500a9b313520ba50ac1f9970f2537d",
+    "hunks": [
+      {
+        "before": "    end\nend\n\nfunction locomotion_ik(locomotion, dt, at)\n\tlocal state = locomotion.animState\n    local animator = locomotion.animator\n",
+        "after": "    end\nend\n\n-- SLEDGE_VR_AVATAR_BEGIN: r7.26. Ordinary animation is unchanged without a matching VR bridge.\nlocal function sledge_vr_active(locomotion)\n    if locomotion.index ~= GetLocalPlayer() or not locomotion.animState.alive then return false end\n    local version, ready, x, y, z = GetPlayerHealth(-717, 9)\n    local position=nil\n    if type(x)==\"number\" and type(y)==\"number\" and type(z)==\"number\"\n       and x==x and y==y and z==z and math.abs(x)<1e6 and math.abs(y)<1e6 and math.abs(z)<1e6 then\n        position=Vec(x,y,z)\n    end\n    return version == 720 and ready == 1, position\nend\n\nlocal function sledge_vr_hands(locomotion, at)\n    local rt, lt = GetToolHandPoseWorldTransform(locomotion.index)\n    if not rt and not lt then return false end\n    local animator, state = locomotion.animator, locomotion.animState\n    local function place(target, side)\n        if not target then return end\n        local adjust = GetAnimatorAdjustTransformIK(animator, \"ik_hand_\"..side)\n        if adjust then target = TransformToParentTransform(target, adjust) end\n        -- Reachable grips stay attached instead of retaining solver error while\n        -- moving. Beyond reach retain the connected constrained arm solution.\n        local shoulder=GetBoneWorldTransform(animator,\"shoulder_\"..side)\n        local reach=GetBoneChainLength(animator,\"shoulder_\"..side,\"hand_\"..side)\n        local lock=shoulder and reach and reach>0 and\n                   VecLength(VecSub(target.pos,shoulder.pos))<=reach*.98\n        SetAnimatorTransformIK(animator, \"shoulder_\"..side, \"hand_\"..side, target, 1.0, 0.0, lock==true, true)\n    end\n    if rt then state.rightHandWeight=1;state.lastRightHandIK=TransformToLocalTransform(at,rt) end\n    if lt then state.leftHandWeight=1;state.lastLeftHandIK=TransformToLocalTransform(at,lt) end\n    place(rt,\"r\");place(lt,\"l\")\n    return true\nend\n\nlocal function sledge_vr_frame(locomotion, pt)\n    local active,position=sledge_vr_active(locomotion)\n    if not active then return end\n    -- The Lua frame getter interpolates locomotion but native tool placement\n    -- uses the current simulation pose. Align the local root to that same pose.\n    if position then pt=Transform(position,pt.rot) end\n    -- Animator motion normally updates in postUpdate (physics cadence).\n    -- Refresh the local root at frame cadence too, without replaying the gait.\n    if GetPlayerVehicle(locomotion.index)==0 and GetPlayerRig(locomotion.index)==0 then\n        local state=locomotion.animState\n        local sinking=-0.1*state.waterWeight*(1.0+state.crouchWeight)\n        local at=TransformToParentTransform(pt,Transform(Vec(0,sinking,0),QuatEuler(0,180,0)))\n        SetAnimatorTransform(locomotion.animator,at)\n        sledge_vr_hands(locomotion,at)\n    end\nend\n-- SLEDGE_VR_AVATAR_END\n\nfunction locomotion_ik(locomotion, dt, at)\n\tlocal state = locomotion.animState\n    local animator = locomotion.animator\n"
+      },
+      {
+        "before": "\t\tSetBoneRotation(animator, \"chest\", rot1)\n\t\tSetBoneRotation(animator, \"head\", rot2)\n\tEndAnimationGroup(animator)\n\n\tlocal grabBody = GetPlayerGrabBody(locomotion.index)\n\tif grabBody ~= 0 then\n",
+        "after": "\t\tSetBoneRotation(animator, \"chest\", rot1)\n\t\tSetBoneRotation(animator, \"head\", rot2)\n\tEndAnimationGroup(animator)\n\n    if sledge_vr_active(locomotion) and sledge_vr_hands(locomotion,at) then return end\n\n\tlocal grabBody = GetPlayerGrabBody(locomotion.index)\n\tif grabBody ~= 0 then\n"
+      },
+      {
+        "before": "\tlocal state = locomotion.animState\n    local animator = locomotion.animator\n\tlocal pt = GetPlayerTransform(locomotion.index)\n    local fwdVec = VecNormalize(TransformToParentVec(pt, Vec(0, 0, -1)))\n    local fwdDot = VecDot(fwdVec, state.lastFwd)\n    if math.abs(1.0 - fwdDot) < 0.000001 then\n",
+        "after": "\tlocal state = locomotion.animState\n    local animator = locomotion.animator\n\tlocal pt = GetPlayerTransform(locomotion.index)\n    sledge_vr_frame(locomotion,pt)\n    local fwdVec = VecNormalize(TransformToParentVec(pt, Vec(0, 0, -1)))\n    local fwdDot = VecDot(fwdVec, state.lastFwd)\n    if math.abs(1.0 - fwdDot) < 0.000001 then\n"
+      }
+    ]
+  },
+  {
+    "name": "spawn",
+    "original_sha256": "355a09435900f83c3938c98a928092d80451cbdf836b3ff9527a9d67b9e708a8",
+    "patched_sha256": "d396b6e419d3c8bd90fb2a8ca0909713bc96fea4d6dfafb07f20bf092215575f",
+    "hunks": [
+      {
+        "before": "\t\tUiColor(1,1,1)\n\t\tUiFont(\"regular.ttf\", 26)\n\n        local newText = UiTextInput(gFilterText, tw, th, gFocusText)\n\n        -- prevent list focus interception\n",
+        "after": "\t\tUiColor(1,1,1)\n\t\tUiFont(\"regular.ttf\", 26)\n\n        -- SLEDGE_TABLET_SEARCH: latch keyboard until search is left or Enter is pressed.\n        if gSledgeTabletOwnsSpawn then\n            if InputPressed(\"lmb\") then gSledgeKeyboard = UiIsMouseInRect(tw, th) end\n            if gFocusText then gSledgeKeyboard = true end\n            if InputPressed(\"return\") then gSledgeKeyboard = false end\n            gFocusText = gFocusText or gSledgeKeyboard\n            GetPlayerHealth(-717, 8, 1, gSledgeKeyboard and 1 or 0)\n        end\n        local newText = UiTextInput(gFilterText, tw, th, gFocusText)\n\n        -- prevent list focus interception\n"
+      },
+      {
+        "before": "})\n\nfunction client.draw()\n\tif GetEventCount(\"LanguageChanged\") > 0 then\n\t\tonLanguageChanged()\n\tend\n",
+        "after": "})\n\nfunction client.draw()\n\t-- SLEDGE_TABLET_BEGIN: owned by SledgePort 7.17, no effect without matching DLL.\n\tlocal vrProtocol, vrEnabled = GetPlayerHealth(-717, 0)\n\tif vrProtocol == 717 and vrEnabled == 1 then\n\t\tlocal tabletRequest = GetPlayerHealth(-717, 7)\n\t\tif tabletRequest == 2 then gSledgeKeyboard = false end\n\t\tif tabletRequest == 1 then\n\t\t\tif spawnEnabled() then\n\t\t\t\tif spawnPlacement then spawnAbort() end\n\t\t\t\tspawnUi = true\n\t\t\t\tgFocusText = false\n\t\t\t\tgSetShortcut = false\n\t\t\t\tgNeedRefresh = true\n\t\t\t\tgSledgeTabletOwnsSpawn = true\n\t\t\telse\n\t\t\t\tGetPlayerHealth(-717, 6, 0)\n\t\t\tend\n\t\tend\n\t\tif gSledgeTabletOwnsSpawn then\n\t\t\tif GetPlayerHealth(-717, 5) ~= 2 then spawnUi = false end\n\t\t\tif not spawnUi then\n\t\t\t\tgSledgeTabletOwnsSpawn = false\n\t\t\t\tGetPlayerHealth(-717, 6, 0)\n\t\t\tend\n\t\tend\n\t\tGetPlayerHealth(-717, 8, spawnUi and 1 or 0, gSledgeKeyboard and 1 or 0)\n\tend\n\t-- SLEDGE_TABLET_END\n\n\tif GetEventCount(\"LanguageChanged\") > 0 then\n\t\tonLanguageChanged()\n\tend\n"
+      }
+    ]
+  }
+]

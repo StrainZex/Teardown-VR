@@ -1,0 +1,7 @@
+* text=auto
+*.cmd text eol=crlf
+*.bat text eol=crlf
+*.vox binary
+*.ogg binary
+*.dll binary
+*.lib binary

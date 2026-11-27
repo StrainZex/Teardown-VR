@@ -1,0 +1,4 @@
+Original hYve mYnd [TEST] by MythRillin (local author credit: SnakeyWakey).
+https://steamcommunity.com/sharedfiles/filedetails/?id=2667255756
+Original description permits reuse of assets/scripts in maps with credit.
+This local VR adaptation extracts weapon-only geometry, sounds and firing behavior. No ragdoll characters, character joints, AI, possession or camera scripts are included. Original Workshop files are unchanged.

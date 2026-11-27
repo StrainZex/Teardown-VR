@@ -1,0 +1,13 @@
+<prefab version="1.6.0">
+  <group name="tool_space">
+    <body dynamic="false">
+      <vox tags="hyve_gun unbreakable" pos="0 0 0" rot="0 0 0" file="MOD/models/flamethrower.vox" scale="0.5">
+        <group pos="-0.1 0.115 -0.7">
+							</group>
+        <group pos="-0.1 0.1 -0.7" />
+      </vox>
+    </body>
+    <location name="tp_action_rh" tags="name=tp_action_rh ik_hand" pos="-0.1 0.08 0.35" rot="0 90 0" />
+    <location name="muzzle" tags="name=muzzle" pos="-0.1 0.115 -0.7" rot="0 0 0" />
+  </group>
+</prefab>

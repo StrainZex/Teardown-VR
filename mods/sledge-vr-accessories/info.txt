@@ -1,0 +1,4 @@
+name = Sledge VR accessories
+author = SledgePort experimental
+description = Left-thigh tablet, shoulder holsters and physical melee for the SledgePort VR bridge. Inactive without the matching bridge. Single-player only.
+version = 7.20
